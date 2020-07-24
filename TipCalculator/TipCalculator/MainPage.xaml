@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TipCalculator.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <TableView Intent="Form">
+            <TableSection Title="Datos">
+                <EntryCell x:Name="txtTotal"
+                        Label="Total"
+                        Placeholder="¢0.0"
+                        />
+                <EntryCell x:Name="txtPropina"
+                           Label="Propina (%)"/>
+                <EntryCell x:Name="txtPersonas"
+                           Label="# de personas"/>
+            </TableSection>
+            <TableSection>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout>
+                            <Button x:Name="btnCalcular"
+                                    Text="Calcular"
+                                    Clicked="BtnCalcular_OnClicked"></Button>
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Resultado">
+                <TextCell x:Name="lblPropina"
+                          Text="Propina: "
+                          Detail="¢0.0"/>
+                <TextCell x:Name="lblTotal"
+                          Text="Total: "
+                          Detail="¢0.0"/>
+                <TextCell x:Name="lblPropinaxPersona"
+                          Text="Propina por persona: "
+                          Detail="¢0.0"/>
+                <TextCell x:Name="lblTotalxPersona"
+                          Text="Total por persona: "
+                          Detail="¢0.0"/>
+            </TableSection>
+        </TableView>
+    </StackLayout>
+
+</ContentPage>
