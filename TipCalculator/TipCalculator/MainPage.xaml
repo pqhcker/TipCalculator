@@ -3,8 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:util="clr-namespace:TipCalculator;assembly=TipCalculator"
              mc:Ignorable="d"
              x:Class="TipCalculator.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <util:ConvertidorMoneda x:Key="convertidor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout>
         <!-- Place new controls here -->
@@ -13,11 +19,16 @@
                 <EntryCell x:Name="txtTotal"
                         Label="Total"
                         Placeholder="¢0.0"
-                        />
+                        Text="{Binding Total}"
+                        Keyboard="Numeric"/>
                 <EntryCell x:Name="txtPropina"
-                           Label="Propina (%)"/>
+                           Label="Propina (%)"
+                           Text="{Binding Propina}"
+                           Keyboard="Numeric"/>
                 <EntryCell x:Name="txtPersonas"
-                           Label="# de personas"/>
+                           Label="# de personas"
+                           Text="{Binding noPersonas}"
+                           Keyboard="Numeric"/>
             </TableSection>
             <TableSection>
                 <ViewCell>
@@ -25,7 +36,9 @@
                         <StackLayout>
                             <Button x:Name="btnCalcular"
                                     Text="Calcular"
-                                    Clicked="BtnCalcular_OnClicked"></Button>
+                                    Command="{Binding OperationsCommand}">
+                                <!--Clicked="BtnCalcular_OnClicked"-->
+                            </Button>
                         </StackLayout>
                     </ViewCell.View>
                 </ViewCell>
@@ -33,16 +46,16 @@
             <TableSection Title="Resultado">
                 <TextCell x:Name="lblPropina"
                           Text="Propina: "
-                          Detail="¢0.0"/>
+                          Detail="{Binding TotalPropina, Converter={StaticResource convertidor}}"/>
                 <TextCell x:Name="lblTotal"
                           Text="Total: "
-                          Detail="¢0.0"/>
+                          Detail="{Binding TotalConPropina, Converter={StaticResource convertidor}}"/>
                 <TextCell x:Name="lblPropinaxPersona"
                           Text="Propina por persona: "
-                          Detail="¢0.0"/>
+                          Detail="{Binding PropinaPorPersona, Converter={StaticResource convertidor}}"/>
                 <TextCell x:Name="lblTotalxPersona"
                           Text="Total por persona: "
-                          Detail="¢0.0"/>
+                          Detail="{Binding TotalPorPersona, Converter={StaticResource convertidor}}"/>
             </TableSection>
         </TableView>
     </StackLayout>

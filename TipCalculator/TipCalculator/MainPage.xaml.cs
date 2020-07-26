@@ -14,29 +14,37 @@ namespace TipCalculator
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        private TipModel tipModel;
+
         public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void BtnCalcular_OnClicked(object sender, EventArgs e)
-        {
-            var total = (decimal.Parse(txtTotal.Text == null ? "0" : txtTotal.Text));
-            var propina = (int.Parse(txtPropina.Text == null ? "0" : txtPropina.Text));
-            var noPersonas = (int.Parse(txtPersonas.Text == null ? "1" : txtPersonas.Text));
-
-            if (noPersonas == 0)
+            tipModel = new TipModel
             {
-                DisplayAlert("Advertencia", "No puede dividirse la cuenta entre 0 personas", "Cerrar");
-                return;
-            }
+                noPersonas = 2
+            };
 
-            var totalPropina = (total * propina) / 100;
-
-            lblPropina.Detail = totalPropina.ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
-            lblTotal.Detail = (totalPropina + total).ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
-            lblPropinaxPersona.Detail = (totalPropina / noPersonas).ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
-            lblTotalxPersona.Detail = ((total + totalPropina) / noPersonas).ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
+            this.BindingContext = tipModel;
         }
+
+        //private void BtnCalcular_OnClicked(object sender, EventArgs e)
+        //{
+        //    var total = (decimal.Parse(txtTotal.Text == null ? "0" : txtTotal.Text));
+        //    var propina = (int.Parse(txtPropina.Text == null ? "0" : txtPropina.Text));
+        //    var noPersonas = (int.Parse(txtPersonas.Text == null ? "1" : txtPersonas.Text));
+
+        //    if (tipModel.noPersonas == 0)
+        //    {
+        //        DisplayAlert("Advertencia", "No puede dividirse la cuenta entre 0 personas", "Cerrar");
+        //        return;
+        //    }
+
+        //    var totalPropina = (total * propina) / 100;
+        //    lblPropina.Detail = totalPropina.ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
+        //    lblTotal.Detail = (totalPropina + total).ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
+        //    lblPropinaxPersona.Detail = (totalPropina / noPersonas).ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
+        //    lblTotalxPersona.Detail = ((total + totalPropina) / noPersonas).ToString("C", CultureInfo.CreateSpecificCulture("es-CR"));
+
+        //}
     }
 }
