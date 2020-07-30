@@ -20,11 +20,11 @@ namespace TipCalculator
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public Command OperationsCommand { get; set; }
+        
 
         public TipModel()
         {
-            OperationsCommand = new Command(DoOperations);
+            
         }
 
         //event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
@@ -40,13 +40,7 @@ namespace TipCalculator
         //    }
         //}
 
-        private void DoOperations()
-        {
-            TotalPropina = (Total * Propina) / 100;
-            TotalConPropina = (TotalPropina + Total);
-            PropinaPorPersona = (TotalPropina / noPersonas);
-            TotalPorPersona = ((Total + TotalPropina) / noPersonas);
-        }
+        
 
         public decimal Total
         {

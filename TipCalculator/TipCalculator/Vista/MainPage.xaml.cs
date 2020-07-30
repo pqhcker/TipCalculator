@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TipCalculator.VistaModelo;
 using Xamarin.Forms;
 
 namespace TipCalculator
@@ -14,17 +15,14 @@ namespace TipCalculator
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        private TipModel tipModel;
+        //private TipModel tipModel;
+        
 
         public MainPage()
         {
             InitializeComponent();
-            tipModel = new TipModel
-            {
-                noPersonas = 2
-            };
-
-            this.BindingContext = tipModel;
+            
+            this.BindingContext = new MainPageViewModel();
         }
 
         //private void BtnCalcular_OnClicked(object sender, EventArgs e)
